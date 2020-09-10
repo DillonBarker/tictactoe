@@ -53,3 +53,15 @@ class TestTurnControl:
     def test_turn_control_class(self):
         controller = TurnControl()
         assert controller.generator == [1,2]
+    
+    def test_turn_control_current_player(self):
+        controller = TurnControl()
+        controller.current_player()
+        assert controller.turn == 1
+    
+    def test_turn_control_switches(self):
+        controller = TurnControl()
+        controller.current_player()
+        assert controller.turn == 1
+        controller.current_player()
+        assert controller.turn == 2

@@ -21,7 +21,10 @@ class Game():
 
 class TurnControl():
     def __init__(self):
-      self.generator = [1,2]
+        self.generator = [1,2]
+        self.turn = 1
     
     def current_player(self):
-        self.generator[0]
+        self.turn = self.generator[0]
+        self.generator.pop(0)
+        self.generator.append(self.turn)
