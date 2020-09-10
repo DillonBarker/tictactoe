@@ -15,3 +15,5 @@ class Game():
         self.player_1 = Player("X")
         self.player_2 = Player("O")
 
+    def player_move(self, position):
+        self.board.the_board[position] = "X"
