@@ -22,5 +22,7 @@ def test_game_class():
 def test_player_class():
     player_1 = Player("X")
     assert player_1.name == "X"
+    assert player_1.score == 0
     player_2 = Player("O")
     assert player_2.name == "O"
+    assert player_2.score == 0
