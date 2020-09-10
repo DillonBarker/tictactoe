@@ -35,7 +35,7 @@ class TestGame:
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.player_move(0)
+        game.player_move(player_1, 0)
         assert game.board.the_board == ["X","-","-",
                                         "-","-","-",
                                         "-","-","-"]
