@@ -1,5 +1,9 @@
 import pytest
 from tictactoe import *
 
-def test_func():
-    assert func(3) == 4
+
+def test_board_class():
+    board = Board()
+    assert board.the_board == ["-","-","-",
+                                "-","-","-",
+                                "-","-","-"]

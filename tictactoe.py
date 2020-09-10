@@ -1,3 +1,6 @@
-def func(x):
-    return x + 1
-
+class Board:
+    def __init__(self):
+        self.the_board = ["-","-","-",
+                          "-","-","-",
+                          "-","-","-"]
+        
