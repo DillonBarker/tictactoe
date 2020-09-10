@@ -41,6 +41,19 @@ class TurnControl():
 
 class WinningConditions():
     
-    def __init__(self, board):
-        self.board = board
-       
+    def __init__(self, game):
+        self.board = game.board.the_board
+        self.win = False
+
+    def col_win(self): 
+        for x in range(len(self.board)): 
+            self.win = True
+            
+            for y in range(len(self.board)): 
+                if self.board[y][x] != "X": 
+                    self.win = False
+                    continue
+                    
+        self.win = True
+    
+ 
