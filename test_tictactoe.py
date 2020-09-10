@@ -51,7 +51,18 @@ class TestGame:
         game.player_move(player_2, 0)
         assert game.board.the_board == ["X","-","-",
                                         "-","-","-",
-                                        "-","-","-"]                 
+                                        "-","-","-"]   
+
+    def test_game_class_is_game_over(self):
+        player_1 = Player("X")
+        player_2 = Player("O")
+        board = Board()
+        game = Game(board, player_1, player_2)
+        game.board.the_board = ["X","X","X",
+                           "X","X","X",
+                           "X","X","X"]
+        game.player_move(player_1, 0)
+        assert game.game_over == True
 
 class TestPlayer:
     def test_player_class(self):

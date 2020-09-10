@@ -14,10 +14,22 @@ class Game():
         self.board = Board()
         self.player_1 = Player("X")
         self.player_2 = Player("O")
+        self.game_over = False
         
     def player_move(self, player, position):
+        self.is_game_over()
+        
         if self.board.the_board[position] == "-":
             self.board.the_board[position] = player.name
+    
+    def is_game_over(self):
+        x = "-"
+        if x in self.board.the_board:
+            pass
+        else:
+            self.game_over = True
+
+            
 
 class TurnControl():
     def __init__(self):
