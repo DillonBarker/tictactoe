@@ -3,4 +3,9 @@ class Board:
         self.the_board = ["-","-","-",
                           "-","-","-",
                           "-","-","-"]
+
+
+class Game():
+    def __init__(self, board):
+        self.board = Board()
         
