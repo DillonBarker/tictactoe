@@ -1,7 +1,6 @@
 import pytest
 from tictactoe import *
 
-
 class TestBoard:
     def test_board_class(self):
         board = Board()
@@ -39,6 +38,20 @@ class TestGame:
         assert game.board.the_board == ["X","-","-",
                                         "-","-","-",
                                         "-","-","-"]
+
+    def test_game_class_player_cant_overwrite(self):
+        player_1 = Player("X")
+        player_2 = Player("O")
+        board = Board()
+        game = Game(board, player_1, player_2)
+        game.player_move(player_1, 0)
+        assert game.board.the_board == ["X","-","-",
+                                        "-","-","-",
+                                        "-","-","-"]
+        game.player_move(player_2, 0)
+        assert game.board.the_board == ["X","-","-",
+                                        "-","-","-",
+                                        "-","-","-"]                 
 
 class TestPlayer:
     def test_player_class(self):

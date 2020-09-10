@@ -15,9 +15,9 @@ class Game():
         self.player_1 = Player("X")
         self.player_2 = Player("O")
         
-
     def player_move(self, player, position):
-        self.board.the_board[position] = player.name
+        if self.board.the_board[position] == "-":
+            self.board.the_board[position] = player.name
 
 class TurnControl():
     def __init__(self):
