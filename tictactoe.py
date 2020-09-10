@@ -29,8 +29,6 @@ class Game():
         else:
             self.game_over = True
 
-            
-
 class TurnControl():
     def __init__(self):
         self.generator = [1,2]
@@ -40,3 +38,9 @@ class TurnControl():
         self.turn = self.generator[0]
         self.generator.pop(0)
         self.generator.append(self.turn)
+
+class WinningConditions():
+    
+    def __init__(self, board):
+        self.board = board
+       
