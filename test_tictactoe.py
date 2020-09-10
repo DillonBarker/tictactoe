@@ -4,12 +4,12 @@ from tictactoe import *
 class TestBoard:
     def test_board_class(self):
         board = Board()
-        assert board.the_board == ["-","-","-",
-                                "-","-","-",
-                                "-","-","-"]
-        assert board.the_board != ["dog","-","-",
-                                    "-","-","-",
-                                    "-","-","-"]
+        assert board.the_board == [["-","-","-"],
+                                   ["-","-","-"],
+                                   ["-","-","-"]]
+        assert board.the_board != [["dog","-","-"],
+                                    ["-","-","-"],
+                                    ["-","-","-"]]
 
 class TestGame:
     def test_game_class(self):
@@ -17,9 +17,9 @@ class TestGame:
         player_1 = Player("X")
         player_2 = Player("O")
         game = Game(board, player_1, player_2)
-        assert game.board.the_board == ["-","-","-",
-                                        "-","-","-",
-                                        "-","-","-"]
+        assert game.board.the_board == [["-","-","-"],
+                                        ["-","-","-"],
+                                        ["-","-","-"]]
         assert isinstance(game.board, Board)
 
     def test_game_class_has_player(self):
@@ -34,34 +34,34 @@ class TestGame:
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.player_move(player_1, 0)
-        assert game.board.the_board == ["X","-","-",
-                                        "-","-","-",
-                                        "-","-","-"]
+        game.player_move(player_1, 0, 0)
+        assert game.board.the_board == [["X","-","-"],
+                                        ["-","-","-"],
+                                        ["-","-","-"]]
 
     def test_game_class_player_cant_overwrite(self):
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.player_move(player_1, 0)
-        assert game.board.the_board == ["X","-","-",
-                                        "-","-","-",
-                                        "-","-","-"]
-        game.player_move(player_2, 0)
-        assert game.board.the_board == ["X","-","-",
-                                        "-","-","-",
-                                        "-","-","-"]   
+        game.player_move(player_1, 0, 0)
+        assert game.board.the_board == [["X","-","-"],
+                                        ["-","-","-"],
+                                        ["-","-","-"]]
+        game.player_move(player_2, 0, 0)
+        assert game.board.the_board == [["X","-","-"],
+                                        ["-","-","-"],
+                                        ["-","-","-"]]   
 
     def test_game_class_is_game_over(self):
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.board.the_board = ["X","X","X",
-                           "X","X","X",
-                           "X","X","X"]
-        game.player_move(player_1, 0)
+        game.board.the_board = [["X","X","X"],
+                                ["X","X","X"],
+                                ["X","X","X"]]
+        game.player_move(player_1, 0, 0)
         assert game.game_over == True
 
 class TestPlayer:

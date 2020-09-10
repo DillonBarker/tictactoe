@@ -1,8 +1,8 @@
 class Board:
     def __init__(self):
-        self.the_board = ["-","-","-",
-                          "-","-","-",
-                          "-","-","-"]
+        self.the_board = [["-","-","-"],
+                          ["-","-","-"],
+                          ["-","-","-"]]
 
 class Player:
     def __init__(self, name):
@@ -16,11 +16,11 @@ class Game():
         self.player_2 = Player("O")
         self.game_over = False
         
-    def player_move(self, player, position):
+    def player_move(self, player, x, y):
         self.is_game_over()
         
-        if self.board.the_board[position] == "-":
-            self.board.the_board[position] = player.name
+        if self.board.the_board[x][y] == "-":
+            self.board.the_board[x][y] = player.name
     
     def is_game_over(self):
         x = "-"
