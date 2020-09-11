@@ -92,6 +92,7 @@ class TestTurnControl:
         assert controller.turn == 2
 
 class TestWinningConditions:
+    
     def test_column_winning_condition(self):
         player_1 = Player("X")
         player_2 = Player("O")
@@ -116,4 +117,17 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 2)
         assert wc.Xwin == False
         wc.row_win()
+        assert wc.Xwin == True
+    
+    def test_diagonal_winning_condition(self):
+        player_1 = Player("X")
+        player_2 = Player("O")
+        board = Board()
+        game = Game(board, player_1, player_2)
+        wc = WinningConditions(game)
+        game.player_move(player_1, 0, 0)
+        game.player_move(player_1, 1, 1)
+        game.player_move(player_1, 2, 2)
+        assert wc.Xwin == False
+        wc.diag_win()
         assert wc.Xwin == True
