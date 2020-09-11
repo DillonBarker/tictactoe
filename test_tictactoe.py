@@ -1,5 +1,6 @@
 import pytest
 from tictactoe import *
+from helpers import *
 
 class TestBoard:
     def test_board_class(self):
@@ -89,3 +90,17 @@ class TestTurnControl:
         assert controller.turn == 1
         controller.current_player()
         assert controller.turn == 2
+
+class TestWinningConditions:
+    def test_column_winning_condition(self):
+        player_1 = Player("X")
+        player_2 = Player("O")
+        board = Board()
+        game = Game(board, player_1, player_2)
+        wc = WinningConditions(game)
+        game.player_move(player_1, 0, 0)
+        game.player_move(player_1, 1, 0)
+        game.player_move(player_1, 2, 0)
+        assert wc.win == False
+        wc.col_win()
+        assert wc.win == True
