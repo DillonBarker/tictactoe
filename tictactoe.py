@@ -55,5 +55,3 @@ class WinningConditions():
                     continue
                     
         self.win = True
-    
- 
