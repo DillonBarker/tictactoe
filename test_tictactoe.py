@@ -98,11 +98,13 @@ class TestWinningConditions:
         board = Board()
         game = Game(board, player_1, player_2)
         wc = WinningConditions(game)
+        assert game.game_over == False
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 0)
         game.player_move(player_1, 2, 0)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
+        assert game.game_over == True
 
     def test_row_winning_condition(self):
         player_1 = Player("X")
@@ -113,7 +115,6 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 0, 1)
         game.player_move(player_1, 0, 2)
-        print(game.board.the_board)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
     
