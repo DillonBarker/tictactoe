@@ -34,7 +34,7 @@ class TestGame:
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.player_move(player_1, 0, 0)
+        game.player_move(0, 0)
         assert game.board.the_board == [["X","-","-"],
                                         ["-","-","-"],
                                         ["-","-","-"]]
@@ -44,11 +44,11 @@ class TestGame:
         player_2 = Player("O")
         board = Board()
         game = Game(board, player_1, player_2)
-        game.player_move(player_1, 0, 0)
+        game.player_move(0, 0)
         assert game.board.the_board == [["X","-","-"],
                                         ["-","-","-"],
                                         ["-","-","-"]]
-        game.player_move(player_2, 0, 0)
+        game.player_move(0, 0)
         assert game.board.the_board == [["X","-","-"],
                                         ["-","-","-"],
                                         ["-","-","-"]]   
@@ -61,7 +61,7 @@ class TestGame:
         game.board.the_board = [["X","X","X"],
                                 ["X","X","X"],
                                 ["X","X","X"]]
-        game.player_move(player_1, 0, 0)
+        game.player_move(0, 0)
         assert game.game_over == True
 
 class TestPlayer:
@@ -75,20 +75,26 @@ class TestPlayer:
 
 class TestTurnControl:
     def test_turn_control_class(self):
-        controller = TurnControl()
-        assert controller.generator == [1,2]
+        player_1 = Player("X")
+        player_2 = Player("O")
+        controller = TurnControl(player_1, player_2)
+        assert controller.generator == [player_1, player_2]
     
     def test_turn_control_current_player(self):
-        controller = TurnControl()
+        player_1 = Player("X")
+        player_2 = Player("O")
+        controller = TurnControl(player_1, player_2)
         controller.current_player()
-        assert controller.turn == 1
+        assert controller.turn == player_1
     
     def test_turn_control_switches(self):
-        controller = TurnControl()
+        player_1 = Player("X")
+        player_2 = Player("O")
+        controller = TurnControl(player_1, player_2)
         controller.current_player()
-        assert controller.turn == 1
+        assert controller.turn == player_1
         controller.current_player()
-        assert controller.turn == 2
+        assert controller.turn == player_2
 
 class TestWinningConditions:
     
@@ -99,9 +105,11 @@ class TestWinningConditions:
         game = Game(board, player_1, player_2)
         wc = WinningConditions(game)
         assert game.game_over == False
-        game.player_move(player_1, 0, 0)
-        game.player_move(player_1, 1, 0)
-        game.player_move(player_1, 2, 0)
+        game.player_move(0, 0)
+        game.player_move(0, 1) # player 2 moving
+        game.player_move(1, 0)
+        game.player_move(0, 2) # player 2 moving
+        game.player_move(2, 0)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
         assert game.game_over == True
@@ -112,9 +120,11 @@ class TestWinningConditions:
         board = Board()
         game = Game(board, player_1, player_2)
         wc = WinningConditions(game)
-        game.player_move(player_1, 0, 0)
-        game.player_move(player_1, 0, 1)
-        game.player_move(player_1, 0, 2)
+        game.player_move(0, 0)
+        game.player_move(1, 0) # player 2 moving
+        game.player_move(0, 1)
+        game.player_move(2, 0) # player 2 moving
+        game.player_move(0, 2)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
     
@@ -124,9 +134,11 @@ class TestWinningConditions:
         board = Board()
         game = Game(board, player_1, player_2)
         wc = WinningConditions(game)
-        game.player_move(player_1, 0, 0)
-        game.player_move(player_1, 1, 1)
-        game.player_move(player_1, 2, 2)
+        game.player_move(0, 0)
+        game.player_move(1, 0) # player 2 moving
+        game.player_move(1, 1)
+        game.player_move(2, 0) # player 2 moving
+        game.player_move(2, 2)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
 
@@ -136,8 +148,11 @@ class TestWinningConditions:
         board = Board()
         game = Game(board, player_1, player_2)
         wc = WinningConditions(game)
-        game.player_move(player_2, 0, 0)
-        game.player_move(player_2, 1, 1)
-        game.player_move(player_2, 2, 2)
+        game.player_move(2, 0) # player 1 moving
+        game.player_move(0, 0)
+        game.player_move(2, 0) # player 1 moving
+        game.player_move(1, 1) 
+        game.player_move(1, 2) # player 1 moving
+        game.player_move(2, 2)
         wc.is_it_won(player_2)
         assert player_1.score == 0 and player_2.score == 1

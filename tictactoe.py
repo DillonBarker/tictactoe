@@ -15,12 +15,14 @@ class Game():
         self.player_1 = Player("X")
         self.player_2 = Player("O")
         self.game_over = False
+        self.turncontrol = TurnControl(self.player_1, self.player_2)
         
-    def player_move(self, player, x, y):
+    def player_move(self, x, y):
+        self.turncontrol.current_player()
         self.is_game_over()
         
         if self.board.the_board[x][y] == "-":
-            self.board.the_board[x][y] = player.name
+            self.board.the_board[x][y] = self.turncontrol.turn.name
     
     def is_game_over(self):
         blank = "-"
@@ -30,9 +32,9 @@ class Game():
             self.game_over = True
 
 class TurnControl():
-    def __init__(self):
-        self.generator = [1,2]
-        self.turn = 1
+    def __init__(self, player_1, player_2):
+        self.generator = [player_1, player_2]
+        self.turn = player_1
     
     def current_player(self):
         self.turn = self.generator[0]
