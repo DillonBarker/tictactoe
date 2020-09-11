@@ -98,3 +98,23 @@ class WinningConditions():
         player.score += 1
         self.game.game_over = True
         return(self.win)
+
+class PlayGame:
+    def __init__(self, game):
+        self.game = game
+        self.control = self.game.turncontrol
+        self.winningconditions = WinningConditions(self.game)
+    
+    def start(self):
+        while self.game.game_over == False:
+            print("Welcome to Dills TicTacToe!")
+            print(self.game.board.the_board)
+            for player in self.control.generator:
+                player == self.control.turn
+                print("#{player.name}'s turn!, please choose a coordinate.")
+                user_input = input("Enter here: eg. 0, 0")
+                self.game.player_move(user_input)
+                print(self.game.board.the_board)
+                if self.game.game_over == True:
+                    break
+        return("Draw")
