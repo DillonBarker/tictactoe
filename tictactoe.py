@@ -42,7 +42,6 @@ class TurnControl():
 class WinningConditions():
     
     def __init__(self, game):
-        self.game = game
         self.player_1 = game.player_1
         self.player_2 = game.player_2
         self.board = game.board.the_board
