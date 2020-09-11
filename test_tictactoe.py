@@ -101,9 +101,9 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 0)
         game.player_move(player_1, 2, 0)
-        assert wc.win == False
+        assert wc.Xwin == False
         wc.col_win()
-        assert wc.win == True
+        assert wc.Xwin == True
 
     def test_row_winning_condition(self):
         player_1 = Player("X")
@@ -114,6 +114,6 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 0, 1)
         game.player_move(player_1, 0, 2)
-        assert wc.win == False
+        assert wc.Xwin == False
         wc.row_win()
-        assert wc.win == True
+        assert wc.Xwin == True

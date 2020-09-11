@@ -43,21 +43,21 @@ class WinningConditions():
     
     def __init__(self, game):
         self.board = game.board.the_board
-        self.win = False
+        self.Xwin = False
 
     def col_win(self): 
         for x in range(len(self.board)): 
             for y in range(len(self.board)): 
                 if self.board[y][x] != "X": 
-                    self.win = False
+                    self.Xwin = False
                     
-        self.win = True
+        self.Xwin = True
 
     def row_win(self):
         for x in range(len(self.board)):
             for y in range(len(self.board)):
                 if self.board[x][y] != "X":
-                    self.win = False
+                    self.Xwin = False
                     
-        self.win = True
+        self.Xwin = True
             
