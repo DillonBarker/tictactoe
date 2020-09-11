@@ -1,6 +1,5 @@
 import pytest
 from tictactoe import *
-from helpers import *
 
 class TestBoard:
     def test_board_class(self):
@@ -102,9 +101,9 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 0)
         game.player_move(player_1, 2, 0)
-        assert wc.win == False
+        assert wc.win == 0
         wc.col_win(player_1)
-        assert wc.win == True
+        assert wc.win == "X"
 
     def test_row_winning_condition(self):
         player_1 = Player("X")
@@ -115,9 +114,9 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 0, 1)
         game.player_move(player_1, 0, 2)
-        assert wc.win == False
+        assert wc.win == 0
         wc.row_win(player_1)
-        assert wc.win == True
+        assert wc.win == "X"
     
     def test_diagonal_winning_condition(self):
         player_1 = Player("X")
@@ -128,6 +127,19 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 1)
         game.player_move(player_1, 2, 2)
-        assert wc.win == False
+        assert wc.win == 0
         wc.diag_win(player_1)
-        assert wc.win == True
+        assert wc.win == "X"
+
+    def test_o_wins_by_diag(self):
+        player_1 = Player("X")
+        player_2 = Player("O")
+        board = Board()
+        game = Game(board, player_1, player_2)
+        wc = WinningConditions(game)
+        game.player_move(player_2, 0, 0)
+        game.player_move(player_2, 1, 1)
+        game.player_move(player_2, 2, 2)
+        assert wc.win == 0
+        wc.diag_win(player_2)
+        assert wc.win == "O"
