@@ -47,11 +47,17 @@ class WinningConditions():
 
     def col_win(self): 
         for x in range(len(self.board)): 
-            self.win = True
-            
             for y in range(len(self.board)): 
                 if self.board[y][x] != "X": 
                     self.win = False
-                    continue
                     
         self.win = True
+
+    def row_win(self):
+        for x in range(len(self.board)):
+            for y in range(len(self.board)):
+                if self.board[x][y] != "X":
+                    self.win = False
+                    
+        self.win = True
+            
