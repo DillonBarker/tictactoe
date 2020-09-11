@@ -71,16 +71,16 @@ class TestTurnControl:
         player_2 = Player("O")
         controller = TurnControl(player_1, player_2)
         controller.current_player()
-        assert controller.turn == player_1
+        assert controller.turn == player_2
     
     def test_turn_control_switches(self):
         player_1 = Player("X")
         player_2 = Player("O")
         controller = TurnControl(player_1, player_2)
         controller.current_player()
-        assert controller.turn == player_1
-        controller.current_player()
         assert controller.turn == player_2
+        controller.current_player()
+        assert controller.turn == player_1
 
 class TestWinningConditions:
     

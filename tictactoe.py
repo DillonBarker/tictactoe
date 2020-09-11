@@ -19,11 +19,11 @@ class Game():
         self.winningconditions = WinningConditions(self.board, self.player_1, self.player_2)
         
     def player_move(self, x, y):
-        self.turncontrol.current_player()
         self.is_game_over()
         
         if self.board.the_board[x][y] == "-":
             self.board.the_board[x][y] = self.turncontrol.turn.name
+            self.turncontrol.current_player()
     
     def is_game_over(self):
         blank = "-"
@@ -43,9 +43,9 @@ class TurnControl():
         self.turn = self.generator[0]
         self.generator.pop(0)
         self.generator.append(self.turn)
+        self.turn = self.generator[0]
 
 class WinningConditions():
-    
     def __init__(self, board, player_1, player_2):
         self.player_1 = player_1
         self.player_2 = player_2
