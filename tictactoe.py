@@ -45,7 +45,6 @@ class WinningConditions():
         self.player_1 = game.player_1
         self.player_2 = game.player_2
         self.board = game.board.the_board
-        self.win = 0
 
     def row_win(self, player): 
         for x in range(len(self.board)): 
