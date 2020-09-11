@@ -38,4 +38,3 @@ Notes:
     - Currently I have a base of the app, whereby I have all the classes, but I now need to work on winning conditions
     - To be clean I think I will have them in another class that can be checked.
     - After each turn, it will call are winning conditions met.. etc
-
