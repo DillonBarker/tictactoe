@@ -42,41 +42,41 @@ class TurnControl():
 class WinningConditions():
     
     def __init__(self, game):
-        self.player_1 = game.player_1
-        self.player_2 = game.player_2
+        self.player_1 = game.player_1.name
+        self.player_2 = game.player_2.name
         self.board = game.board.the_board
 
     def row_win(self, player): 
         for x in range(len(self.board)): 
-            self.win = player.name
+            self.win = player
             
             for y in range(len(self.board)): 
-                if self.board[x][y] != player.name: 
+                if self.board[x][y] != player: 
                     self.win = 0    
                     continue
 
-            if self.win == player.name: 
+            if self.win == player: 
                 return(self.win) 
         return(self.win) 
 
     def col_win(self, player): 
         for x in range(len(self.board)): 
-            self.win = player.name
+            self.win = player
             
             for y in range(len(self.board)): 
-                if self.board[y][x] != player.name: 
+                if self.board[y][x] != player: 
                     self.win = 0
                     continue
 
-            if self.win == player.name: 
+            if self.win == player: 
                 return(self.win) 
         return(self.win) 
   
     def diag_win(self, player): 
-        self.win = player.name
+        self.win = player
         
         for x in range(len(self.board)): 
-            if self.board[x][x] != player.name: 
+            if self.board[x][x] != player: 
                 self.win = 0
         return(self.win) 
 
