@@ -10,12 +10,13 @@ class Player:
         self.score = 0
 
 class Game():
-    def __init__(self, board, player_1, player_2):
+    def __init__(self):
         self.board = Board()
         self.player_1 = Player("X")
         self.player_2 = Player("O")
         self.game_over = False
         self.turncontrol = TurnControl(self.player_1, self.player_2)
+        self.winningconditions = WinningConditions(self.board, self.player_1, self.player_2)
         
     def player_move(self, x, y):
         self.turncontrol.current_player()
@@ -28,6 +29,8 @@ class Game():
         blank = "-"
         if blank in self.board.the_board:
             pass
+        elif self.winningconditions.is_it_won(self.turncontrol.turn):
+            self.game_over = True
         else:
             self.game_over = True
 
@@ -43,11 +46,10 @@ class TurnControl():
 
 class WinningConditions():
     
-    def __init__(self, game):
-        self.game = game
-        self.player_1 = game.player_1
-        self.player_2 = game.player_2
-        self.board = game.board.the_board
+    def __init__(self, board, player_1, player_2):
+        self.player_1 = player_1
+        self.player_2 = player_2
+        self.board = board.the_board
 
     def row_win(self, player): 
         for x in range(len(self.board)): 
@@ -96,6 +98,5 @@ class WinningConditions():
         
     def gain_point(self, player):
         player.score += 1
-        self.game.game_over = True
         return(self.win)
 

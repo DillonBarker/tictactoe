@@ -10,40 +10,29 @@ class TestBoard:
         assert board.the_board != [["dog","-","-"],
                                     ["-","-","-"],
                                     ["-","-","-"]]
+        
 
 class TestGame:
     def test_game_class(self):
-        board = Board()
-        player_1 = Player("X")
-        player_2 = Player("O")
-        game = Game(board, player_1, player_2)
+        game = Game()
         assert game.board.the_board == [["-","-","-"],
                                         ["-","-","-"],
                                         ["-","-","-"]]
         assert isinstance(game.board, Board)
 
     def test_game_class_has_player(self):
-        player_1 = Player("X")
-        player_2 = Player("O")
-        board = Board()
-        game = Game(board, player_1, player_2)
+        game = Game()
         assert isinstance(game.player_1, Player)
 
     def test_game_class_player_move(self):
-        player_1 = Player("X")
-        player_2 = Player("O")
-        board = Board()
-        game = Game(board, player_1, player_2)
+        game = Game()
         game.player_move(0, 0)
         assert game.board.the_board == [["X","-","-"],
                                         ["-","-","-"],
                                         ["-","-","-"]]
 
     def test_game_class_player_cant_overwrite(self):
-        player_1 = Player("X")
-        player_2 = Player("O")
-        board = Board()
-        game = Game(board, player_1, player_2)
+        game = Game()
         game.player_move(0, 0)
         assert game.board.the_board == [["X","-","-"],
                                         ["-","-","-"],
@@ -54,10 +43,7 @@ class TestGame:
                                         ["-","-","-"]]   
 
     def test_game_class_is_game_over(self):
-        player_1 = Player("X")
-        player_2 = Player("O")
-        board = Board()
-        game = Game(board, player_1, player_2)
+        game = Game()
         game.board.the_board = [["X","X","X"],
                                 ["X","X","X"],
                                 ["X","X","X"]]
@@ -99,32 +85,25 @@ class TestTurnControl:
 class TestWinningConditions:
     
     def test_column_winning_condition(self):
+        print("Harry is a HOE")
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
-        game = Game(board, player_1, player_2)
-        wc = WinningConditions(game)
-        assert game.game_over == False
-        game.player_move(0, 0)
-        game.player_move(0, 1) # player 2 moving
-        game.player_move(1, 0)
-        game.player_move(0, 2) # player 2 moving
-        game.player_move(2, 0)
+        board.the_board = [["X","-","-"],
+                           ["X","-","-"],
+                           ["X","-","-"]]
+        wc = WinningConditions(board, player_1, player_2)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
-        assert game.game_over == True
 
     def test_row_winning_condition(self):
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
-        game = Game(board, player_1, player_2)
-        wc = WinningConditions(game)
-        game.player_move(0, 0)
-        game.player_move(1, 0) # player 2 moving
-        game.player_move(0, 1)
-        game.player_move(2, 0) # player 2 moving
-        game.player_move(0, 2)
+        board.the_board = [["X","X","X"],
+                           ["-","-","-"],
+                           ["-","-","-"]]
+        wc = WinningConditions(board, player_1, player_2)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
     
@@ -132,13 +111,10 @@ class TestWinningConditions:
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
-        game = Game(board, player_1, player_2)
-        wc = WinningConditions(game)
-        game.player_move(0, 0)
-        game.player_move(1, 0) # player 2 moving
-        game.player_move(1, 1)
-        game.player_move(2, 0) # player 2 moving
-        game.player_move(2, 2)
+        board.the_board = [["X","-","-"],
+                           ["-","X","-"],
+                           ["-","-","X"]]
+        wc = WinningConditions(board, player_1, player_2)
         wc.is_it_won(player_1)
         assert player_1.score == 1 and player_2.score == 0
 
@@ -146,13 +122,9 @@ class TestWinningConditions:
         player_1 = Player("X")
         player_2 = Player("O")
         board = Board()
-        game = Game(board, player_1, player_2)
-        wc = WinningConditions(game)
-        game.player_move(2, 0) # player 1 moving
-        game.player_move(0, 0)
-        game.player_move(2, 0) # player 1 moving
-        game.player_move(1, 1) 
-        game.player_move(1, 2) # player 1 moving
-        game.player_move(2, 2)
+        board.the_board = [["O","-","-"],
+                           ["-","O","-"],
+                           ["-","-","O"]]
+        wc = WinningConditions(board, player_1, player_2)
         wc.is_it_won(player_2)
         assert player_1.score == 0 and player_2.score == 1
