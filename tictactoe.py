@@ -82,4 +82,15 @@ class WinningConditions():
                 self.win = 0
         return(self.win) 
 
+    def is_it_won(self, player):
+        self.row_win(player)
+        if self.win != 0:
+            return(self.win)
+        self.col_win(player)
+        if self.win != 0:
+            return(self.win)
+        self.diag_win(player)
+        if self.win != 0:
+            return(self.win)
+        
             

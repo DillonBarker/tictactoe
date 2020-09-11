@@ -101,9 +101,8 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 0)
         game.player_move(player_1, 2, 0)
-        assert wc.win == 0
-        wc.col_win(player_1)
-        assert wc.win == "X"
+        wc.is_it_won(player_1)
+        
 
     def test_row_winning_condition(self):
         player_1 = Player("X")
@@ -114,9 +113,9 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 0, 1)
         game.player_move(player_1, 0, 2)
-        assert wc.win == 0
-        wc.row_win(player_1)
-        assert wc.win == "X"
+        print(game.board.the_board)
+        assert wc.is_it_won(player_1) == "X"
+        
     
     def test_diagonal_winning_condition(self):
         player_1 = Player("X")
@@ -127,9 +126,7 @@ class TestWinningConditions:
         game.player_move(player_1, 0, 0)
         game.player_move(player_1, 1, 1)
         game.player_move(player_1, 2, 2)
-        assert wc.win == 0
-        wc.diag_win(player_1)
-        assert wc.win == "X"
+        assert wc.is_it_won(player_1) == "X"
 
     def test_o_wins_by_diag(self):
         player_1 = Player("X")
@@ -140,6 +137,4 @@ class TestWinningConditions:
         game.player_move(player_2, 0, 0)
         game.player_move(player_2, 1, 1)
         game.player_move(player_2, 2, 2)
-        assert wc.win == 0
-        wc.diag_win(player_2)
-        assert wc.win == "O"
+        assert wc.is_it_won(player_2) == "O"
