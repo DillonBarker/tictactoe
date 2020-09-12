@@ -4,8 +4,8 @@ Spec:
     - [X] A player can claim a field if it is not already taken
     - [X] A turn ends when a player claims a field
     - [X] A player wins if they claim all the fields in a row, column or diagonal
-    - [] A game is over if a player wins
-    - [] A game is over when all fields are taken
+    - [X] A game is over if a player wins
+    - [X] A game is over when all fields are taken
 
 Plan:
     - I need to work out what classes I need and what they will do:

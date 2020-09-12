@@ -23,16 +23,16 @@ class Game():
         
         if self.board.the_board[x][y] == "-":
             self.board.the_board[x][y] = self.turncontrol.turn.name
+            self.winningconditions.is_it_won(self.turncontrol.turn)
             self.turncontrol.current_player()
     
     def is_game_over(self):
         blank = "-"
         if blank in self.board.the_board:
             pass
-        elif self.winningconditions.is_it_won(self.turncontrol.turn):
+        elif self.winningconditions.win == "X" or self.winningconditions.win == "O":
             self.game_over = True
-        else:
-            self.game_over = True
+        
 
 class TurnControl():
     def __init__(self, player_1, player_2):
@@ -50,6 +50,7 @@ class WinningConditions():
         self.player_1 = player_1
         self.player_2 = player_2
         self.board = board.the_board
+        self.win = 0
 
     def row_win(self, player): 
         for x in range(len(self.board)): 
